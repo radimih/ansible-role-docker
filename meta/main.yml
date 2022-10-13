@@ -1,9 +1,9 @@
 ---
 galaxy_info:
-  role_name: docker
   author: Radimir Mikhailov
   description: Install Docker (Docker Compose included)
   license: MIT
+  role_name: docker
 
   min_ansible_version: 2.7
 
