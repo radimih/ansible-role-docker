@@ -1,11 +1,11 @@
 ---
-- name: Установить поддержку PGP-ключей
+- name: Установить поддержку GPG-ключей
   ansible.builtin.apt:
     name: add-apt-key
     state: present
   become: true
 
-- name: Добавить PGP-ключ репозитория
+- name: Добавить GPG-ключ репозитория
   ansible.builtin.apt_key:
     id: 9DC858229FC7DD38854AE2D88D81803C0EBFCD88
     url: https://download.docker.com/linux/{{ ansible_distribution | lower }}/gpg
