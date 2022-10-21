@@ -1,20 +1,17 @@
 ---
-- name: Установить поддержку GPG-ключей
-  ansible.builtin.apt:
-    name: add-apt-key
-    state: present
-  become: true
+- ansible.builtin.set_fact:
+    # Так как по ссылке ниже ключ размещён в формате ASCII, расширение файла должно быть `.asc`, а не `.gpg`
+    _key_file: /usr/share/keyrings/docker.asc
 
-- name: Добавить GPG-ключ репозитория
-  ansible.builtin.apt_key:
-    id: 9DC858229FC7DD38854AE2D88D81803C0EBFCD88
+- name: Скачать GPG-ключ репозитория
+  ansible.builtin.get_url:
     url: https://download.docker.com/linux/{{ ansible_distribution | lower }}/gpg
-    state: present
+    dest: '{{ _key_file }}'
+    mode: 0644
   become: true
 
 - name: Добавить официальный PPA
   ansible.builtin.apt_repository:
-    repo: 'deb [arch=amd64] https://download.docker.com/linux/{{ ansible_distribution | lower }} {{ ansible_lsb.codename }} stable'
+    repo: 'deb [arch=amd64 signed-by={{ _key_file }}] https://download.docker.com/linux/{{ ansible_distribution | lower }} {{ ansible_lsb.codename }} stable'
     state: present
   become: true
-
