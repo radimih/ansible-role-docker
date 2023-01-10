@@ -6,12 +6,12 @@ Ansible-роль для установки [Docker](https://docs.docker.com/engi
 
 ## Аргументы Ansible-роли
 
-#### Обязательные
+### Обязательные
 
 | Аргумент | Описание |
 | --- | --- |  
 
-#### Необязательные
+### Необязательные
 
 <table>
 <thead>
@@ -93,6 +93,6 @@ log-opts:
 
 ## Ссылки
 
-* [dockerd options](https://docs.docker.com/engine/reference/commandline/dockerd/)
-* [Configure logging drivers](https://docs.docker.com/config/containers/logging/configure/)
-* [Customize log driver output](https://docs.docker.com/config/containers/logging/log_tags/) (`log-opts.tag` options)
+- [dockerd options](https://docs.docker.com/engine/reference/commandline/dockerd/)
+- [Configure logging drivers](https://docs.docker.com/config/containers/logging/configure/)
+- [Customize log driver output](https://docs.docker.com/config/containers/logging/log_tags/) (`log-opts.tag` options)
