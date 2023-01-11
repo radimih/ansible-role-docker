@@ -1,0 +1,15 @@
+---
+- name: Установить GPG-ключ репозитория
+  ansible.builtin.rpm_key:
+    key: https://download.docker.com/linux/{{ ansible_distribution | lower }}/gpg
+    state: present
+  become: true
+
+- name: Добавить официальный репозиторий
+  ansible.builtin.get_url:
+    url: https://download.docker.com/linux/{{ ansible_distribution | lower }}/docker-ce.repo
+    dest: '/etc/yum.repos.d/docker-ce.repo'
+    owner: root
+    group: root
+    mode: 0644
+  become: true
