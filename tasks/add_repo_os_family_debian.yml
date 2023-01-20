@@ -1,17 +1,17 @@
 ---
-- name: 'Файл для размещения ключа PPA-репозитория: /usr/share/keyrings/docker.asc'
+- name: '{{ ansible_os_family }}: файл для размещения публичного ключа репозитория: /usr/share/keyrings/docker.asc'
   ansible.builtin.set_fact:
     # Так как по ссылке ниже ключ размещён в формате ASCII, расширение файла должно быть `.asc`, а не `.gpg`
     _key_file: /usr/share/keyrings/docker.asc
 
-- name: Установить ключ PPA-репозитория
+- name: '{{ ansible_os_family }}: установить публичный ключ репозитория'
   ansible.builtin.get_url:
     url: https://download.docker.com/linux/{{ ansible_distribution | lower }}/gpg
     dest: '{{ _key_file }}'
     mode: 0644
   become: true
 
-- name: Добавить официальный PPA-репозиторий
+- name: '{{ ansible_os_family }}: добавить официальный репозиторий'
   ansible.builtin.apt_repository:
     repo: 'deb [arch=amd64 signed-by={{ _key_file }}] https://download.docker.com/linux/{{ ansible_distribution | lower }} {{ ansible_lsb.codename }} stable'
     filename: docker
