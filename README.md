@@ -1,15 +1,15 @@
-# Docker
+# Ansible-роль `docker`
 
-Ansible-роль для установки [Docker](https://docs.docker.com/engine/install/).
+Роль для установки [Docker](https://docs.docker.com/engine/install/).
 
 [Docker Compose](https://docs.docker.com/compose/) устанавливается как плагин к Docker (`docker compose version`).
 
-## Аргументы Ansible-роли
+## Аргументы роли
 
 ### Обязательные
 
-| Аргумент | Описание |
-| --- | --- |  
+| Аргумент | Описание
+| --- | ---
 
 ### Необязательные
 
@@ -22,7 +22,7 @@ Ansible-роль для установки [Docker](https://docs.docker.com/engi
 Описание
 </th>
 <th>
-Значение по-умолчанию
+Default
 </th>
 </thead>
 <tbody>
