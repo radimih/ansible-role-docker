@@ -1,6 +1,12 @@
 ---
-# Default daemon.json (https://docs.docker.com/engine/reference/commandline/dockerd/)
+# Default daemon.json (https://docs.docker.com/config/daemon/)
 _daemon_json_default:
+  builder:
+    gc:
+      defaultKeepStorage: '10GB'
+      enabled: true
+  exec-opts:
+    - 'native.cgroupdriver=systemd'
   features:
     buildkit: true
   log-driver: local  # https://docs.docker.com/config/containers/logging/local/

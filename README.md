@@ -36,11 +36,16 @@ Default
 </td>
 <td valign="top">
 
-Параметры [dockerd](https://docs.docker.com/engine/reference/commandline/dockerd/),
-которые будут перекрывать или дополнять следующие параметры по-умолчанию
-(хранятся в приватной переменной роли [`_daemon_json_default`](vars/main.yml)):
+Параметры [dockerd](https://docs.docker.com/config/daemon/), которые будут перекрывать или дополнять следующие
+параметры по-умолчанию (хранятся в приватной переменной роли [`_daemon_json_default`](vars/main.yml)):
 
 ```yaml
+builder:
+  gc:
+    defaultKeepStorage: '10GB'
+    enabled: true
+exec-opts:
+  - 'native.cgroupdriver=systemd'
 features:
   buildkit: true
 log-driver: local
