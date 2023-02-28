@@ -5,8 +5,6 @@ _daemon_json_default:
     gc:
       defaultKeepStorage: '10GB'
       enabled: true
-  exec-opts:
-    - 'native.cgroupdriver=systemd'
   features:
     buildkit: true
   log-driver: local  # https://docs.docker.com/config/containers/logging/local/

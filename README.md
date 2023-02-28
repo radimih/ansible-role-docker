@@ -44,8 +44,6 @@ builder:
   gc:
     defaultKeepStorage: '10GB'
     enabled: true
-exec-opts:
-  - 'native.cgroupdriver=systemd'
 features:
   buildkit: true
 log-driver: local
