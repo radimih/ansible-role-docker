@@ -61,6 +61,25 @@ log-opts:
 
 </td>
 
+<tr>
+
+<td valign="top">
+
+`prune_older_hours`
+
+</td>
+<td valign="top">
+
+Удалять неиспользуемые контейнеры, образы и сети, созданные
+
+</td>
+
+<td valign="top">
+
+`168` = 24 * 7
+
+</td>
+
 </tr>
 
 </tbody>

@@ -1,2 +1,3 @@
 ---
 daemon_json_extra: {}
+prune_older_hours: 168  # 24 * 7

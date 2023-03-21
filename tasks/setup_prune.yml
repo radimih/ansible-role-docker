@@ -1,0 +1,32 @@
+---
+- name: Настроить
+  block:
+
+    - name: Установить пакет cronie
+      ansible.builtin.dnf:
+        name: cronie
+
+    - name: Запустить службу crond
+      ansible.builtin.systemd:
+        name: crond
+        state: started
+        enabled: true
+
+  when: ansible_os_family | lower == 'redhat'
+  become: true
+
+- name:
+  ansible.builtin.copy:
+    content:
+      #!/bin/sh
+      #
+      # Чистка от неиспользуемых Docker-контейнеров, образов, сетей и томов (volumes)
+      #
+
+      if [ -x /usr/bin/docker ]; then
+          /usr/bin/docker system prune --all --filter "until={{ prune_older_hours }}h" --force
+          /usr/bin/docker volume prune --force
+      fi
+    dest: /etc/cron.daily/docker-prune.sh
+    mode: 0755
+  become: true

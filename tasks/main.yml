@@ -55,3 +55,6 @@
     enabled: true
     daemon_reload: true
   become: true
+
+- name: Настроить автоматическую очистку Docker
+  ansible.builtin.include_tasks: setup_prune.yml
