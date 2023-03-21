@@ -17,7 +17,7 @@
 
 - name:
   ansible.builtin.copy:
-    content:
+    content: |
       #!/bin/sh
       #
       # Чистка от неиспользуемых Docker-контейнеров, образов, сетей и томов (volumes)
