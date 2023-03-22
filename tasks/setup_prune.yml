@@ -1,5 +1,5 @@
 ---
-- name: Настроить
+- name: Установить службу crond на RedHat-семействе ОС
   block:
 
     - name: Установить пакет cronie
@@ -15,7 +15,7 @@
   when: ansible_os_family | lower == 'redhat'
   become: true
 
-- name:
+- name: Настроить ежедневную очистку Docker
   ansible.builtin.copy:
     content: |
       #!/bin/sh
