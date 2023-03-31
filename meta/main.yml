@@ -32,7 +32,11 @@ argument_specs:
         description: Дополнительные параметры dockerd
         required: false
         type: dict
-      prune_older_hours:
+      container_older_hours:
+        description:
+        required: false
+        type: int
+      images_older_hours:
         description:
         required: false
         type: int

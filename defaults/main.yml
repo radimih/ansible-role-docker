@@ -1,3 +1,4 @@
 ---
 daemon_json_extra: {}
-prune_older_hours: 168  # 24 * 7
+containers_older_hours: 12
+images_older_hours: 168  # 24 * 7

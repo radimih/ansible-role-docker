@@ -20,12 +20,14 @@
     content: |
       #!/bin/sh
       #
-      # Чистка от неиспользуемых Docker-контейнеров, образов, сетей и томов (volumes)
+      # Чистка от неиспользуемых Docker-контейнеров, сетей, образов и томов (volumes)
       #
 
       if [ -x /usr/bin/docker ]; then
-          /usr/bin/docker system prune --all --filter "until={{ prune_older_hours }}h" --force
-          /usr/bin/docker volume prune --force
+          /usr/bin/docker container prune --force --filter "until={{ containers_older_hours }}h"
+          /usr/bin/docker network   prune --force --filter "until={{ containers_older_hours }}h"
+          /usr/bin/docker image     prune --force --filter "until={{ images_older_hours }}h" -all
+          /usr/bin/docker volume    prune --force
       fi
     dest: /etc/cron.daily/docker-prune.sh
     mode: 0755
