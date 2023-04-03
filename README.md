@@ -76,7 +76,7 @@ log-opts:
 
 <td valign="top">
 
-`false`
+`true`
 
 </td>
 
