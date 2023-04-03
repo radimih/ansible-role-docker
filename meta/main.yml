@@ -32,11 +32,7 @@ argument_specs:
         description: Дополнительные параметры dockerd
         required: false
         type: dict
-      container_older_hours:
-        description:
+      remove_unused_images:
+        description: Удалять неиспользуемые образы при очистке Docker'а
         required: false
-        type: int
-      images_older_hours:
-        description:
-        required: false
-        type: int
+        type: bool

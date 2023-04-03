@@ -24,10 +24,8 @@
       #
 
       if [ -x /usr/bin/docker ]; then
-          /usr/bin/docker container prune --force --filter "until={{ containers_older_hours }}h"
-          /usr/bin/docker network   prune --force --filter "until={{ containers_older_hours }}h"
-          /usr/bin/docker image     prune --force --filter "until={{ images_older_hours }}h" -all
-          /usr/bin/docker volume    prune --force
+          /usr/bin/docker system prune --force --filter "until=24h" {% if remove_unused_images %}-all{% endif %}
+          /usr/bin/docker volume prune --force
       fi
     dest: /etc/cron.daily/docker-prune.sh
     mode: 0755
