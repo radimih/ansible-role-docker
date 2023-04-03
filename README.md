@@ -61,10 +61,49 @@ log-opts:
 
 </td>
 
+<tr>
+
+<td valign="top">
+
+`remove_unused_images`
+
+</td>
+<td valign="top">
+
+Удалять ли неиспользуемые образы при очистке Docker'а (см. ниже)
+
+</td>
+
+<td valign="top">
+
+`true`
+
+</td>
+
 </tr>
 
 </tbody>
 </table>
+
+## Автоматическая очистка Docker
+
+Роль настраивает _ежедневную_ очистку неиспользуемых данных Docker:
+
+- остановленные **контейнеры**
+- неиспользуемые **сети**
+- зависшие (dangling) и неиспользуемые **образы**
+- неиспользуемые **тома** (volumes)
+
+Локальный **кэш сборки** очищается самим BuildKit-демоном через механизм
+[Garbage collection](https://docs.docker.com/build/cache/garbage-collection/).
+
+Для предотвращения сюрпризов, удаляются только те неиспользуемые контейнеры, сети
+и образы, с момента _создания_ которых прошло не менее **24 часов**. Для образов
+учитывается именно время создания, а не закачки (pull).
+
+Неиспользуемые тома удаляются без какого-либо ограничения по времени. Во-первых,
+в Docker не реализована такая возможность. Во-вторых, предполагается, что вся
+чувствительная информация не должна храниться с помощью механизма томов.
 
 ## Пример
 
@@ -97,5 +136,6 @@ log-opts:
 ## Ссылки
 
 - [dockerd options](https://docs.docker.com/engine/reference/commandline/dockerd/)
+- [Garbage collection](https://docs.docker.com/build/cache/garbage-collection/)
 - [Configure logging drivers](https://docs.docker.com/config/containers/logging/configure/)
 - [Customize log driver output](https://docs.docker.com/config/containers/logging/log_tags/) (`log-opts.tag` options)

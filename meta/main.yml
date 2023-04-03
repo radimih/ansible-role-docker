@@ -32,3 +32,7 @@ argument_specs:
         description: Дополнительные параметры dockerd
         required: false
         type: dict
+      remove_unused_images:
+        description: Удалять неиспользуемые образы при очистке Docker'а
+        required: false
+        type: bool

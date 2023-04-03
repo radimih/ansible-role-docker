@@ -1,0 +1,32 @@
+---
+- name: Установить службу crond на RedHat-семействе ОС
+  block:
+
+    - name: Установить пакет cronie
+      ansible.builtin.dnf:
+        name: cronie
+
+    - name: Запустить службу crond
+      ansible.builtin.systemd:
+        name: crond
+        state: started
+        enabled: true
+
+  when: ansible_os_family | lower == 'redhat'
+  become: true
+
+- name: Настроить ежедневную очистку Docker
+  ansible.builtin.copy:
+    content: |
+      #!/bin/sh
+      #
+      # Чистка от неиспользуемых Docker-контейнеров, сетей, образов и томов (volumes)
+      #
+
+      if [ -x /usr/bin/docker ]; then
+          /usr/bin/docker system prune --force --filter "until=24h"{{ " --all" if remove_unused_images }}
+          /usr/bin/docker volume prune --force
+      fi
+    dest: /etc/cron.daily/docker-prune.sh
+    mode: 0755
+  become: true

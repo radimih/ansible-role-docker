@@ -1,2 +1,3 @@
 ---
 daemon_json_extra: {}
+remove_unused_images: true
