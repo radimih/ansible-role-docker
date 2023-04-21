@@ -6,10 +6,20 @@
   become: true
 
 - name: '{{ ansible_distribution }}: добавить официальный репозиторий'
-  ansible.builtin.get_url:
-    url: https://download.docker.com/linux/fedora/docker-ce.repo
-    dest: /etc/yum.repos.d/docker-ce.repo
-    owner: root
-    group: root
-    mode: 0644
+  ansible.builtin.yum_repository:
+    name: docker-ce-stable
+    description: Docker CE Stable - $basearch
+    baseurl: https://download.docker.com/linux/fedora/$releasever/$basearch/stable
+    gpgkey: https://download.docker.com/linux/fedora/gpg
+    gpgcheck: true
+    enabled: true
+    state: present
   become: true
+
+  # ansible.builtin.get_url:
+  #   url: https://download.docker.com/linux/fedora/docker-ce.repo
+  #   dest: /etc/yum.repos.d/docker-ce.repo
+  #   owner: root
+  #   group: root
+  #   mode: 0644
+  # become: true
