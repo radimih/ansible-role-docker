@@ -2,10 +2,10 @@
 - name: Получить недостающие факты о хосте
   ansible.builtin.setup:
     gather_subset: min
-  when: ansible_os_family is not defined
+  when: ansible_distribution is not defined
 
 - name: Добавить официальный репозиторий Docker
-  ansible.builtin.include_tasks: add_repo_os_family_{{ ansible_os_family | lower }}.yml
+  ansible.builtin.include_tasks: add_repo_distribution_{{ ansible_distribution | lower }}.yml
 
 - name: Установить Docker и Docker Compose plugin
   ansible.builtin.package:
@@ -13,6 +13,7 @@
       - docker-ce
       - docker-ce-cli
       - containerd.io
+      - docker-buildx-plugin
       - docker-compose-plugin
     state: present
   become: true
