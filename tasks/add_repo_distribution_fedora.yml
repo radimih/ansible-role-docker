@@ -1,0 +1,15 @@
+---
+- name: '{{ ansible_distribution }}: установить публичный ключ репозитория'
+  ansible.builtin.rpm_key:
+    key: https://download.docker.com/linux/fedora/gpg
+    state: present
+  become: true
+
+- name: '{{ ansible_distribution }}: добавить официальный репозиторий'
+  ansible.builtin.get_url:
+    url: https://download.docker.com/linux/fedora/docker-ce.repo
+    dest: /etc/yum.repos.d/docker-ce.repo
+    owner: root
+    group: root
+    mode: 0644
+  become: true

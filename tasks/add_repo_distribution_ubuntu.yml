@@ -1,0 +1,19 @@
+---
+- name: '{{ ansible_distribution }}: файл для размещения публичного ключа репозитория: /usr/share/keyrings/docker.asc'
+  ansible.builtin.set_fact:
+    # Так как по ссылке ниже ключ размещён в формате ASCII, расширение файла должно быть `.asc`, а не `.gpg`
+    _key_file: /usr/share/keyrings/docker.asc
+
+- name: '{{ ansible_distribution }}: установить публичный ключ репозитория'
+  ansible.builtin.get_url:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    dest: '{{ _key_file }}'
+    mode: 0644
+  become: true
+
+- name: '{{ ansible_distribution }}: добавить официальный репозиторий'
+  ansible.builtin.apt_repository:
+    repo: 'deb [arch=amd64 signed-by={{ _key_file }}] https://download.docker.com/linux/ubuntu {{ ansible_lsb.codename }} stable'
+    filename: docker
+    state: present
+  become: true
