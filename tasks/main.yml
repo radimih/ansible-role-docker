@@ -45,7 +45,7 @@
     owner: root
     group: root
   become: true
-  notify: restart-docker
+  notify: Restart-docker
   tags:
     - configure
 

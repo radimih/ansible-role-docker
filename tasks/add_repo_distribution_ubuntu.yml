@@ -13,7 +13,7 @@
 
 - name: '{{ ansible_distribution }}: добавить официальный репозиторий'
   ansible.builtin.apt_repository:
-    repo: 'deb [arch=amd64 signed-by={{ _key_file }}] https://download.docker.com/linux/ubuntu {{ ansible_lsb.codename }} stable'
+    repo: deb [arch=amd64 signed-by={{ _key_file }}] https://download.docker.com/linux/ubuntu {{ ansible_lsb.codename }} stable
     filename: docker
     state: present
   become: true

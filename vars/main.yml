@@ -4,7 +4,7 @@ _daemon_json_default:
   builder:
     gc:  # https://docs.docker.com/build/cache/garbage-collection/
       enabled: true
-      defaultKeepStorage: '10GB'
+      defaultKeepStorage: 10GB
   features:
     buildkit: true
   log-driver: local  # https://docs.docker.com/config/containers/logging/local/
