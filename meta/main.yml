@@ -1,24 +1,4 @@
 ---
-galaxy_info:
-  author: Radimir Mikhailov
-  description: Install Docker (Docker Compose included)
-  license: MIT
-  role_name: docker
-
-  min_ansible_version: '2.7'
-
-  platforms:
-    - name: Fedora
-      versions:
-        - all
-    - name: Ubuntu
-      versions:
-        - all
-
-  galaxy_tags: []
-
-dependencies: []
-
 argument_specs:
   main:
     options:
@@ -30,3 +10,20 @@ argument_specs:
         description: Удалять неиспользуемые образы при очистке Docker'а
         required: false
         type: bool
+
+dependencies: []
+
+galaxy_info:
+  author: Radimir Mikhailov
+  description: Install Docker (Docker Compose included)
+  galaxy_tags: []
+  license: MIT
+  min_ansible_version: '2.7'
+  platforms:
+    - name: Fedora
+      versions:
+        - all
+    - name: Ubuntu
+      versions:
+        - all
+  role_name: docker
